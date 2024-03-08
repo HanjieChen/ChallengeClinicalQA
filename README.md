@@ -13,7 +13,7 @@ To install all the dependencies, run the following command
 pip install -r requirements.txt
 ````
 
-To scrape the data from [JAMA](https://jamanetwork.com/), run the following command
+To scrape the data, run the following command
 
 ````
 python jama_scraper.py
