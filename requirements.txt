@@ -1,0 +1,3 @@
+cloudscraper
+pandas
+beautifulsoup4
