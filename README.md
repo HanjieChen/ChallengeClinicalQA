@@ -17,7 +17,7 @@ Scrape the data, run
 python jama_scraper.py
 ````
 
-The data will be saved in `jama_raw.csv` and `jama_raw.json`.
+The data will be saved in `jama_raw.csv` and `jama_raw.json` files.
 
 ### Reference
 If you find this repository helpful, please cite our paper:
