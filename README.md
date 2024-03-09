@@ -22,3 +22,14 @@ python jama_scraper.py
 We have also provided the correct answer ids in `jama_links.json` for double check 
 
 After scraping, the dataset are saved as `jama_raw.csv`  and `jama_raw.json`
+
+### Reference:
+If you find this repository helpful, please cite our paper:
+```bibtex
+@article{chen2024benchmarking,
+  title={Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions},
+  author={Chen, Hanjie and Fang, Zhouxiang and Singla, Yash and Dredze, Mark},
+  journal={arXiv preprint arXiv:2402.18060},
+  year={2024}
+}
+```
