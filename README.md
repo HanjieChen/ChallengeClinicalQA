@@ -12,7 +12,7 @@ Install the required dependencies
 pip install -r requirements.txt
 ````
 
-Scrape the data, run
+Scrape the data
 ````
 python jama_scraper.py
 ````
