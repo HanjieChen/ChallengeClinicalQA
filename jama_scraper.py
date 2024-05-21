@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import time
 import random
-
+import json
 
 def extract_paragraphs(tempsoup):
     casepara=[]
@@ -81,7 +81,6 @@ def extractMCQ(tempsoup):
     ques=None
     ans=None
     if tempsoup:
-        #article_mcq=tempsoup.find('div',class='box-section online-quiz clip-last-child thm-bg')
         div_element = tempsoup.find('div', class_='box-section online-quiz clip-last-child thm-bg')
         if div_element==None:
             return None, ques,ans
@@ -100,8 +99,10 @@ def extractMCQ(tempsoup):
 
 
 if __name__ == '__main__':
-    url_df = pd.read_json('jama_links.json')
-    df = pd.DataFrame(columns = ['URL', 'Title','Case','Discussion','MCQ_question','Option1','Option2','Option3','Option4','Diagnosis','Correct_option','HasImage','MedicalField','Superclass'])
+    url_df = pd.read_json('jama_links.json', orient='records')
+    url_df = url_df.drop(columns='id')
+    dff = []
+
     cnt = 0
     print("Start Scraping...")
     for index, row in url_df.iterrows():
@@ -111,17 +112,16 @@ if __name__ == '__main__':
         content = scraper.get(url).text
         soup = BeautifulSoup(content, 'html.parser')
         results = soup.findAll("div",{"class": "article-content"})
-        title_value=row['title']
         checkimage=False
 
-        whethermcq,question,answers=extractMCQ(soup)
+        whethermcq,mcqquestion,answers=extractMCQ(soup)
         if whethermcq==None:
             print("No MCQ found or some other issue....trying again ")
             time.sleep(random.uniform(1, 2))
             scraper = cloudscraper.create_scraper(delay=2, browser="chrome")
             content = scraper.get(url).text
             soup = BeautifulSoup(content, 'html.parser')
-            whethermcq,question,answers=extractMCQ(soup)
+            whethermcq,mcqquestion,answers=extractMCQ(soup)
 
             if whethermcq==None:
                 print("Again No MCQ found...Move to next")
@@ -145,14 +145,22 @@ if __name__ == '__main__':
 
         for para in discussionpara:
             combinediscussionpara+=para
-
-        dff={'URL': url, 'Title': title_value, 'Case': combineCasepara, 'Discussion': combinediscussionpara, 'MCQ_question': question, 'Option1': answers[0], 'Option2': answers[1], 'Option3': answers[2], 'Option4': answers[3], 'Diagnosis': diagnosis, 'Correct_option': chooseoption, 'HasImage': HasImage, 'MedicalField': articleType, 'Superclass': superclass}
+        question = combineCasepara + ' ' + mcqquestion
+        # We directly copy the answer from jama_links.json to make sure they are correct
+        dff.append([url, question, answers[0], answers[1], answers[2], answers[3], diagnosis, row['answer_idx'], row['answer'], combinediscussionpara, articleType])
         cnt += 1
-        if cnt%10==0:
+        if cnt%10 == 0:
             print(f"{cnt} Links are Successfully Fetched")
-        df = df._append(dff, ignore_index=True)
+    df = df = pd.DataFrame(dff, columns = ['link','question', 'opa', 'opb','opc','opd','diagnosis', 'answer_idx','answer','explanation','field'])
 
     print("Scraping Finished")
+
     df.to_csv("jama_raw.csv", index=False)
-    df.to_json("jama_raw.json")
+
+    df.index.name = 'id'
+    df = df.reset_index()
+    json_dict = df.to_dict(orient='records')
+    with open('jama_raw.json', 'w') as f:
+        json.dump(json_dict, f, indent=4)
+
     print("Files Saved")
