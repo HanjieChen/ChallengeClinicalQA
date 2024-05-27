@@ -1,5 +1,3 @@
-# ChallengeClinicalQA
-Repo for the paper [Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions](https://arxiv.org/pdf/2402.18060.pdf)
 
 ### Datasets
 - [Medbullets](https://github.com/HanjieChen/ChallengeClinicalQA/tree/main/medbullets)
@@ -19,13 +17,4 @@ python jama_scraper.py
 
 The data will be saved in `jama_raw.csv` and `jama_raw.json` files.
 
-### Reference
-If you find this repository helpful, please cite our paper:
-```bibtex
-@article{chen2024benchmarking,
-  title={Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions},
-  author={Chen, Hanjie and Fang, Zhouxiang and Singla, Yash and Dredze, Mark},
-  journal={arXiv preprint arXiv:2402.18060},
-  year={2024}
-}
-```
+
