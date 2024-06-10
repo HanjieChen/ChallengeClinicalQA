@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
         whethermcq,mcqquestion,answers=extractMCQ(soup)
         if whethermcq==None:
-            print("No MCQ found or some other issue....trying again ")
+            print("No MCQ found....trying again ")
             time.sleep(random.uniform(1, 2))
             scraper = cloudscraper.create_scraper(delay=2, browser="chrome")
             content = scraper.get(url).text
@@ -124,7 +124,7 @@ if __name__ == '__main__':
             whethermcq,mcqquestion,answers=extractMCQ(soup)
 
             if whethermcq==None:
-                print("Again No MCQ found...Move to next")
+                print("Please check your license to ensure you have access to JAMA website.")
                 continue
 
         paragraphs,diagnosis,chooseoption,casepara,discussionpara = extract_paragraphs(soup)
