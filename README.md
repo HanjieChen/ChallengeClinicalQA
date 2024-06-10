@@ -5,7 +5,7 @@ Repo for the paper [Benchmarking Large Language Models on Answering and Explaini
 - [Medbullets](https://github.com/HanjieChen/ChallengeClinicalQA/tree/main/medbullets)
 - [JAMA Clinical Challenge](https://jamanetwork.com/collections/44038/clinical-challenge)
 
-We do not publicably release the JAMA Clinical Challenge data due to license constrains. Instead, we provide [URLs](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/jama_links.json) to the articles and a [scraper](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/jama_scraper.py) that you can use to obtain the data with the appropriate license. Please check your access to JAMA articles before you run the script.
+We do not publicably release the JAMA Clinical Challenge data due to license constrains. Instead, we provide [URLs](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/jama_links.json) to the articles and a [scraper](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/jama_scraper.py) that you can use to obtain the data with the appropriate license. Please check your license to ensure you have access to JAMA articles (Full Text) before you run the script.
 
 Install the required dependencies
 ````
