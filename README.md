@@ -36,14 +36,3 @@ Evaluate explanations
 ````
 python ./src/eval_exp.py --prompt_type Y/RY/R --model_name model_name --data_name data_name --input_file input_file_name --metric metric_name
 ````
-=======
-### Reference
-If you find this repository helpful, please cite our paper:
-```bibtex
-@article{chen2024benchmarking,
-  title={Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions},
-  author={Chen, Hanjie and Fang, Zhouxiang and Singla, Yash and Dredze, Mark},
-  journal={arXiv preprint arXiv:2402.18060},
-  year={2024}
-}
-```
