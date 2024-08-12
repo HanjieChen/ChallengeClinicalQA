@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-
+from tqdm import tqdm
 import pdb 
 # URL of the JAMA Network Clinical Challenges page
 BASE_URL = "https://jamanetwork.com/collections/44038/clinical-challenge" # 
@@ -93,7 +93,7 @@ def extract_answers(case_url):
     return answer_idx, answer
 
 # Function to save the cases to a JSON file
-def save_to_json(cases, filename='jama_clinical_cases.json'):
+def save_to_json(cases, filename='jama_clinical_cases_beta.json'):
     with open(filename, 'w') as json_file:
         json.dump(cases, json_file, indent=4)
 
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     
     compiled_results = []
     
-    for idx, (link, year) in enumerate(clinical_cases_links):
+    for idx, (link, year) in tqdm(enumerate(clinical_cases_links), total=len(clinical_cases_links)):
         answer_idx, answer = extract_answers(link)
         compiled_results.append({
             'id': idx,
@@ -114,7 +114,7 @@ if __name__ == "__main__":
         })
     
     # Save the results to a JSON file
-    with open('jama_clinical_cases.json', 'w') as json_file:
+    with open('jama_clinical_cases_beta.json', 'w') as json_file:
         json.dump(compiled_results, json_file, indent=4)
 
-    print(f"Saved {len(compiled_results)} cases to jama_clinical_cases.json")
+    print(f"Saved {len(compiled_results)} cases to jama_clinical_cases_beta.json")
