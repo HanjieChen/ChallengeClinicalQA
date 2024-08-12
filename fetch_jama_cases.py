@@ -92,11 +92,6 @@ def extract_answers(case_url):
     # pdb.set_trace()
     return answer_idx, answer
 
-# Function to save the cases to a JSON file
-def save_to_json(cases, filename='jama_clinical_cases_beta.json'):
-    with open(filename, 'w') as json_file:
-        json.dump(cases, json_file, indent=4)
-
 # Main execution
 if __name__ == "__main__":
     clinical_cases_links = scrape_clinical_cases()
@@ -114,7 +109,8 @@ if __name__ == "__main__":
         })
     
     # Save the results to a JSON file
-    with open('jama_clinical_cases_beta.json', 'w') as json_file:
+    file_name = 'jama_links_updated.json'
+    with open(file_name, 'w') as json_file:
         json.dump(compiled_results, json_file, indent=4)
 
-    print(f"Saved {len(compiled_results)} cases to jama_clinical_cases_beta.json")
+    print(f"Saved {len(compiled_results)} cases to {file_name}")

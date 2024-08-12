@@ -99,7 +99,7 @@ def extractMCQ(tempsoup):
 
 
 if __name__ == '__main__':
-    url_df = pd.read_json('jama_clinical_cases.json', orient='records')
+    url_df = pd.read_json('jama_links.json', orient='records')
     url_df = url_df.drop(columns='id')
     dff = []
 
@@ -107,8 +107,8 @@ if __name__ == '__main__':
     print("Start Scraping...")
     for index, row in url_df.iterrows():
         url = row['link']
-        time.sleep(random.uniform(1, 2))
-        scraper = cloudscraper.create_scraper(delay=2, browser="chrome")
+        # time.sleep(random.uniform(1, 2))
+        scraper = cloudscraper.create_scraper(delay=1, browser="chrome")
         content = scraper.get(url).text
         soup = BeautifulSoup(content, 'html.parser')
         results = soup.findAll("div",{"class": "article-content"})
@@ -117,8 +117,8 @@ if __name__ == '__main__':
         whethermcq,mcqquestion,answers=extractMCQ(soup)
         if whethermcq==None:
             print("No MCQ found....trying again ")
-            time.sleep(random.uniform(1, 2))
-            scraper = cloudscraper.create_scraper(delay=2, browser="chrome")
+            # time.sleep(random.uniform(1, 2))
+            scraper = cloudscraper.create_scraper(delay=1, browser="chrome")
             content = scraper.get(url).text
             soup = BeautifulSoup(content, 'html.parser')
             whethermcq,mcqquestion,answers=extractMCQ(soup)
