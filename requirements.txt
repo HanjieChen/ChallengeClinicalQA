@@ -1,3 +1,4 @@
 cloudscraper
 pandas
 beautifulsoup4
+tqdm

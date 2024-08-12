@@ -99,7 +99,7 @@ def extractMCQ(tempsoup):
 
 
 if __name__ == '__main__':
-    url_df = pd.read_json('jama_links.json', orient='records')
+    url_df = pd.read_json('jama_clinical_cases.json', orient='records')
     url_df = url_df.drop(columns='id')
     dff = []
 
