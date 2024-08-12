@@ -147,13 +147,13 @@ def extractMCQ(tempsoup):
 
 if __name__ == '__main__':
     # Load the URLs from the JSON file
-    url_df = pd.read_json('retry_jama_clinical_cases.json', orient='records')
+    url_df = pd.read_json('retry_jama_clinical_cases_ALPHA.json', orient='records')
     # url_df = pd.read_json('jama_clinical_test.json', orient='records')
     
     dff = []
     cnt = 0
     print("Start Scraping...")
-    max_retries = 5
+    max_retries = 16
     failed_urls = []  # List to store failed URLs
     for index, row in url_df.iterrows():
         url = row['link']
