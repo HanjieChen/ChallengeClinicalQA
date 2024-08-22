@@ -19,15 +19,17 @@ python jama_scraper.py
 
 The data will be saved in `jama_raw.csv` and `jama_raw.json` files.
 
-We thank [awxlong](https://github.com/awxlong) for providing [fetch_jama_cases](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/fetch_jama_cases.py) to scrape updated links. 
+-------
+We thank [awxlong](https://github.com/awxlong) for providing [fetch_jama_cases](https://github.com/HanjieChen/ChallengeClinicalQA/blob/main/fetch_jama_cases.py) to scrape updated links for new data. 
 
-To scrape updated links
+Scrape updated links
 
 ````
 python fetch_jama_cases.py
 ````
 
- The updated links will be saved as ``jama_links_updated.json``. 
+The updated links will be saved in ``jama_links_updated.json``. 
+
 
 ### Reference
 If you find this repository helpful, please cite our paper:
